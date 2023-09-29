@@ -43,13 +43,13 @@ fun TopBar(navController: NavController,visiable : Boolean) {
             ){
                 Text(
                     text = "Welcome",
-                    style = MaterialTheme.typography.bodyLarge,
+                    style = androidx.compose.material.MaterialTheme.typography.h4,
                     color = Color.White,
                     modifier = Modifier.padding(horizontal = 10.dp)
                 )
                 Text(
                     text = "Every Film Holds a Story",
-                    style = MaterialTheme.typography.bodySmall,
+                    style = androidx.compose.material.MaterialTheme.typography.h1,
                     color = Color.White,
                     modifier = Modifier.padding(horizontal = 10.dp)
                 )

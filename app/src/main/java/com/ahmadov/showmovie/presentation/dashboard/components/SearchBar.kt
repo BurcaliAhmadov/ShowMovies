@@ -44,7 +44,7 @@ fun SearchBar(navController: NavController) {
         ){
             Text(
                 text = "Search ...",
-                style = MaterialTheme.typography.titleMedium,
+                style = androidx.compose.material.MaterialTheme.typography.body1,
                 color = Color.Gray,
                 modifier = Modifier.padding(horizontal = 15.dp)
             )

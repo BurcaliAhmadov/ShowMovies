@@ -71,10 +71,10 @@ fun MovieItemCard (item  : MovieItem?,modifier: Modifier,navController: NavContr
                 }
             )
             Spacer(modifier = Modifier.height(10.dp))
-            val lineHeight = MaterialTheme.typography.titleSmall.fontSize * 4 / 3
+            val lineHeight = androidx.compose.material.MaterialTheme.typography.h6.fontSize * 4 / 3
             Text(
                 text = item?.title ?: "",
-                style = MaterialTheme.typography.titleLarge,
+                style = androidx.compose.material.MaterialTheme.typography.body1,
                 modifier = Modifier.padding(horizontal = 10.dp),
                 maxLines = 1,
                 fontWeight = FontWeight.Bold,
@@ -83,7 +83,7 @@ fun MovieItemCard (item  : MovieItem?,modifier: Modifier,navController: NavContr
             )
             Text(
                 text = item?.release_date?: "",
-                style = MaterialTheme.typography.bodySmall,
+                style = androidx.compose.material.MaterialTheme.typography.caption,
                 modifier = Modifier.padding(horizontal = 10.dp)
             )
             Spacer(modifier = Modifier.height(10.dp))
