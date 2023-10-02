@@ -6,9 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -23,8 +21,8 @@ import coil.request.ImageRequest
 import com.ahmadov.showmovie.R
 
 @Composable
-fun TopBar(navController: NavController,visiable : Boolean) {
-    if(visiable){
+fun TopBar(navController: NavController, visibility : Boolean) {
+    if(visibility){
         Box (
             contentAlignment = Alignment.CenterStart
         ) {
@@ -49,7 +47,7 @@ fun TopBar(navController: NavController,visiable : Boolean) {
                 )
                 Text(
                     text = "Every Film Holds a Story",
-                    style = androidx.compose.material.MaterialTheme.typography.h1,
+                    style = androidx.compose.material.MaterialTheme.typography.body1,
                     color = Color.White,
                     modifier = Modifier.padding(horizontal = 10.dp)
                 )
