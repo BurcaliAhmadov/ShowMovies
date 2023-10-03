@@ -37,33 +37,33 @@ import com.ahmadov.showmovie.presentation.dashboard.components.MovieItemCard
 import com.ahmadov.showmovie.presentation.dashboard.components.TopBar
 import com.ahmadov.showmovie.util.HomeBottomNavigation
 
+
 @Composable
-fun DashBoardScreen(navController: NavController,viewModel: DashboardViewModel = hiltViewModel()) {
+fun DashBoardScreen(navController: NavController, viewModel: DashboardViewModel = hiltViewModel()) {
     Scaffold(bottomBar = {
-            com.ahmadov.showmovie.presentation.dashboard.BottomNavigationBar(navController = navController)
-        }) {paddingValues ->
-        Box(modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding())){
-            IsLoading(isLoading = viewModel.isLoading.containsValue(true))
-            ErrorView(viewModel.error.value)
-            LazyColumn{
+        BottomNavigationBar(navController = navController)
+    }) { paddingValues ->
+
+        Box(modifier = Modifier.padding(bottom = paddingValues.calculateBottomPadding())) {
+            LazyColumn() {
                 item {
-                    TopBar(
-                        navController = navController,
-                        visibility = viewModel.popularMovieList.isNotEmpty()
-                    )
+                    TopBar(navController, viewModel.popularMovieList.isNotEmpty())
                     Spacer(modifier = Modifier.height(20.dp))
+
                     Title(
-                        navController = navController,
-                        visibility = viewModel.popularMovieList.isNotEmpty(),
-                        moviesType = MoviesType.POPULAR
+                        navController,
+                        viewModel.popularMovieList.isNotEmpty(),
+                        MoviesType.POPULAR
                     )
+
                     PopularList(viewModel = viewModel, navController = navController)
 
                     Spacer(modifier = Modifier.height(5.dp))
-
-                    Title(navController = navController,
-                        visibility =viewModel.nowPlayingMovieList.isNotEmpty() ,
-                        moviesType =MoviesType.NOW_PLAYING )
+                    Title(
+                        navController,
+                        viewModel.nowPlayingMovieList.isNotEmpty(),
+                        MoviesType.NOW_PLAYING
+                    )
                     NowPlayingList(viewModel = viewModel, navController = navController)
 
                     Spacer(modifier = Modifier.height(5.dp))
@@ -83,13 +83,11 @@ fun DashBoardScreen(navController: NavController,viewModel: DashboardViewModel =
                     TopRatedList(viewModel = viewModel, navController = navController)
                 }
             }
+            IsLoading(isLoading = viewModel.isLoading.containsValue(true))
+            ErrorView(viewModel.error.value)
 
         }
-
-        
     }
-
-
 
 }
 @Composable
@@ -177,7 +175,7 @@ fun PopularList(viewModel: DashboardViewModel,navController: NavController) {
         ){movieItem->
             MovieItemCard(
                 item = movieItem,
-                modifier = Modifier.width(140.dp), 
+                modifier = Modifier.width(140.dp),
                 navController = navController)
         }
     }

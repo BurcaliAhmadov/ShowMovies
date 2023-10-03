@@ -16,26 +16,22 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 
 @Composable
-fun IsLoading(isLoading : Boolean) {
-
+fun IsLoading(isLoading: Boolean) {
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.anim_loading))
-    if(isLoading){
-
-        Box (
+    if (isLoading) {
+        Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.LightGray.copy(alpha = .5f))
+                .background(Color.LightGray.copy(alpha = 0.5f))
         ) {
+
             LottieAnimation(
                 composition = composition,
                 iterations = LottieConstants.IterateForever,
-                modifier = Modifier.padding(130.dp)
-
-                )
-
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(130.dp)
+            )
         }
-
-
     }
-    
 }

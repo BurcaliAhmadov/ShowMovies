@@ -37,6 +37,7 @@ class DashboardViewModel @Inject constructor(
     private var _isLoading = mutableStateMapOf<Int, Boolean>()
     val isLoading: Map<Int, Boolean> = _isLoading
 
+
     init {
         viewModelScope.launch {
 
@@ -64,7 +65,6 @@ class DashboardViewModel @Inject constructor(
                         _nowPlayingMovieList.clear()
                         it.data?.results?.forEach { movieItem ->
                             _nowPlayingMovieList.add(movieItem)
-                            delay(1000)
                             _isLoading[1]=false
                         }
                     }
@@ -88,7 +88,6 @@ class DashboardViewModel @Inject constructor(
                         it.data?.results?.forEach { movieItem ->
                             _upcomingMovieList.add(movieItem)
                         }
-                        delay(1000)
                         _isLoading[2] = false
 
 
@@ -113,7 +112,6 @@ class DashboardViewModel @Inject constructor(
                         it.data?.results?.forEach { movieItem ->
                             _topRatedMovieList.add(movieItem)
                         }
-                        delay(1000)
                         _isLoading[3] = false
 
 
