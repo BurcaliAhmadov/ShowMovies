@@ -6,7 +6,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,13 +42,13 @@ fun TopBar(navController: NavController, visibility : Boolean) {
             ){
                 Text(
                     text = "Welcome",
-                    style = androidx.compose.material.MaterialTheme.typography.h4,
+                    style = MaterialTheme.typography.h4,
                     color = Color.White,
                     modifier = Modifier.padding(horizontal = 10.dp)
                 )
                 Text(
                     text = "Every Film Holds a Story",
-                    style = androidx.compose.material.MaterialTheme.typography.body1,
+                    style = MaterialTheme.typography.body1,
                     color = Color.White,
                     modifier = Modifier.padding(horizontal = 10.dp)
                 )

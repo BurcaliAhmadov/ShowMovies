@@ -1,4 +1,4 @@
-package com.ahmadov.showmovie.presentation.dashboard.components
+package com.ahmadov.showmovie.presentation.movie_details.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -8,10 +8,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.Card
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -19,15 +20,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 import com.ahmadov.showmovie.R
-import com.ahmadov.showmovie.data.model.remote.movie.MovieItem
-import com.ahmadov.showmovie.presentation.Screen
+import com.ahmadov.showmovie.data.model.remote.detail.Cast
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
@@ -35,61 +33,64 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 
 
 @Composable
-fun MovieItemCard (item  : MovieItem?,modifier: Modifier,navController: NavController ) {
+fun ItemCastCard(castItem:Cast?) {
     Card(
         modifier = Modifier
-            .padding(10.dp)
-            .background(color = Color.White)
+            .padding(start = 15.dp)
+            .background(Color.White)
             .clickable {
-                navController.navigate(Screen.MovieDetailsScreen.route + "?movieId=${item?.id.toString()}&moviesTitle=${item?.title}")
+
             },
         shape = RoundedCornerShape(10.dp)
     ) {
         Column(
-            modifier = modifier
+            modifier = Modifier.width(120.dp)
         ) {
             SubcomposeAsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data("https://image.tmdb.org/t/p/original" + item?.poster_path)
+                    .data("https://image.tmdb.org/t/p/original" + castItem?.profile_path)
                     .crossfade(true)
                     .build(),
                 contentDescription = stringResource(id = R.string.description),
-
                 contentScale = ContentScale.FillBounds,
-
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(160.dp),
+                    .height(120.dp),
                 loading = {
-                    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.loading_image))
+                    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.anim_img_loading))
                     LottieAnimation(
                         composition = composition,
                         iterations = LottieConstants.IterateForever,
-                        modifier = Modifier
-                            .fillMaxSize()
+                        modifier = Modifier.fillMaxSize()
+
                     )
                 }
             )
-            Spacer(modifier = Modifier.height(10.dp))
-            val lineHeight = MaterialTheme.typography.h6.fontSize * 4 / 3
-            Text(
-                text = item?.title ?: "",
+            Spacer(modifier = Modifier.height(5.dp))
+            androidx.compose.material.Text(
+                text = castItem?.name ?: "",
                 style = MaterialTheme.typography.body1,
-                modifier = Modifier.padding(horizontal = 10.dp),
                 maxLines = 1,
-                fontWeight = FontWeight.Bold,
                 overflow = TextOverflow.Ellipsis,
-                lineHeight = lineHeight
+                modifier = Modifier.padding(horizontal = 10.dp),
             )
-            Text(
-                text = item?.release_date?: "",
-                style = MaterialTheme.typography.caption,
-                modifier = Modifier.padding(horizontal = 10.dp)
+            androidx.compose.material.Text(
+                text = castItem?.character ?: "",
+                style = MaterialTheme.typography.body2,
+                color = Color.Gray,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.padding(horizontal = 10.dp),
             )
             Spacer(modifier = Modifier.height(10.dp))
+
+
+
+
+
         }
 
     }
 
-
 }
+

@@ -9,7 +9,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,13 +39,13 @@ fun SearchBar(navController: NavController) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            androidx.compose.material.Text(
+            Text(
                 text = "Search for a movie...",
                 style = MaterialTheme.typography.body1,
                 color = Color.Gray,
                 modifier = Modifier.padding(horizontal = 15.dp)
             )
-            androidx.compose.material.Icon(
+            Icon(
                 painter = painterResource(id = R.drawable.ic_menu_search),
                 contentDescription = "search_icon",
                 Modifier.padding(end = 20.dp),
