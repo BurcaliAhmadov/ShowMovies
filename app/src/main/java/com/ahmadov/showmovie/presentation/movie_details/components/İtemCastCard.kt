@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.Card
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -83,10 +82,6 @@ fun ItemCastCard(castItem:Cast?) {
                 modifier = Modifier.padding(horizontal = 10.dp),
             )
             Spacer(modifier = Modifier.height(10.dp))
-
-
-
-
 
         }
 
