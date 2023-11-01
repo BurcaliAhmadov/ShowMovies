@@ -17,6 +17,7 @@ class GetArtistsUseCase @Inject constructor(
             emit(Resource.Loading(null))
             val response=repo.getArtists(movieId=movieId)
             if(response.isSuccessful){
+                println("artist geldi xos geldi")
                 response.body()?.let {
                     emit(Resource.Success(it))
                 }

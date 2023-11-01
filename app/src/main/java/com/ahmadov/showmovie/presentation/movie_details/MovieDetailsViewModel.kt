@@ -39,6 +39,7 @@ class MovieDetailsViewModel @Inject constructor(
 
     init {
         savedStateHandle.get<String>("movieId")?.let { movieId ->
+            println(movieId)
             if(movieId.isNotEmpty()){
                 viewModelScope.launch {
                     useCase.getMovieDetailsUseCase.getExecuteMovieDetail(movieId).collect{
@@ -66,12 +67,14 @@ class MovieDetailsViewModel @Inject constructor(
                             is Resource.Success -> {
                                 it.data?.let {credits ->
                                     _movieCredits.value=credits
+
                                 }
                                 _isLoading[1]=false
                             }
                             is Resource.Error ->{
                                 _apiError.value=true
                                 _isLoading[1]=false
+
                             }
                             is Resource.Loading -> {
                                 _isLoading[1]=true
@@ -83,6 +86,7 @@ class MovieDetailsViewModel @Inject constructor(
                             is Resource.Success ->{
                                 it.data?.let {trailer ->
                                     _trailer.value=trailer
+
                                 }
                                 _isLoading[2]=false
                             }

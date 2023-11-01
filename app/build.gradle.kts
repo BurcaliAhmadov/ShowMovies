@@ -110,6 +110,10 @@ dependencies {
     // Lottie
     implementation ("com.airbnb.android:lottie-compose:5.2.0")
 
+    //youtube
+
+    implementation ("com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1")
+
 
 
 }

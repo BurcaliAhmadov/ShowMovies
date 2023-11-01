@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
@@ -47,8 +48,11 @@ import com.ahmadov.showmovie.data.model.remote.detail.MovieDetail
 import com.ahmadov.showmovie.data.model.remote.movie.ResultItem
 import com.ahmadov.showmovie.data.model.remote.movie.Trailer
 import com.ahmadov.showmovie.presentation.Screen
+import com.ahmadov.showmovie.presentation.dashboard.components.ErrorView
+import com.ahmadov.showmovie.presentation.dashboard.components.IsLoading
 import com.ahmadov.showmovie.presentation.movie_details.components.CircularProgress
 import com.ahmadov.showmovie.presentation.movie_details.components.ItemCastCard
+import com.ahmadov.showmovie.presentation.view_all.components.ToolBar
 import com.ahmadov.showmovie.ui.theme.ShowMovieTheme
 import com.ahmadov.showmovie.util.formattedYear
 import com.ahmadov.showmovie.util.minuteToTime
@@ -58,6 +62,37 @@ import java.util.Locale
 fun MovieDetailsScreen(
     navController: NavController,title:String,viewModel: MovieDetailsViewModel= hiltViewModel()
 ) {
+    Scaffold(topBar = {
+        ToolBar(title = title, onBack = {
+            navController.popBackStack()
+        })
+    }){paddingValues ->
+        Box(modifier = Modifier.padding(
+            bottom = paddingValues.calculateBottomPadding()
+        )){
+            val details =viewModel.movieDetails.value
+            val cast = viewModel.movieCredits.value
+            val videos =viewModel.trailer.value
+            if(details.id != null && cast.id != null){
+                println(details.overview)
+                LazyColumn(content = {
+                    item { ItemPoster(response = details)}
+                    item {ItemTitle(navController = navController, response = details, videos = videos)}
+                    item {ItemOverView(response = details)}
+                    item { ItemCast(credits = cast)}
+                })
+            }
+            IsLoading(isLoading = viewModel.isLoading.containsValue(true))
+            ErrorView(error = viewModel.apiError.value)
+
+
+        }
+
+
+    }
+
+    
+
 
 
 
@@ -114,7 +149,6 @@ fun ItemTitle(navController: NavController, response:MovieDetail,videos:Trailer)
             .fillMaxWidth(),
         textAlign = TextAlign.Center
     )
-    Spacer(modifier = Modifier.height(20.dp))
 
     Row(
         modifier= Modifier
@@ -124,7 +158,7 @@ fun ItemTitle(navController: NavController, response:MovieDetail,videos:Trailer)
     ) {
         Text(
             text = "R",
-            style = MaterialTheme.typography.h1,
+            style = MaterialTheme.typography.body1,
             maxLines = 1,
             modifier = Modifier.padding(end = 10.dp)
         )
@@ -253,5 +287,5 @@ fun ItemCast(credits: Credits) {
 
     })
     Spacer(modifier = Modifier.height(15.dp))
-    
+
 }

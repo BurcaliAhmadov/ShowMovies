@@ -16,11 +16,14 @@ class GetMovieDetailsUseCase @Inject constructor(
             emit(Resource.Loading(null))
             val response = repo.getMovieDetails(movieId=movieId)
             if(response.isSuccessful){
+
                 response.body()?.let {
                     emit(Resource.Success(it))
+
                 }
             }else{
                 emit(Resource.Error("Error Movie Details",null))
+
             }
 
 
