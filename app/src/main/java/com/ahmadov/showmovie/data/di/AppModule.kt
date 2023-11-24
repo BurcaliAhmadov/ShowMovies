@@ -12,6 +12,10 @@ import com.ahmadov.showmovie.domein.use_case.remote.GetSearchMovieUseCase
 import com.ahmadov.showmovie.domein.use_case.remote.GetTopRatedMovieUseCase
 import com.ahmadov.showmovie.domein.use_case.remote.GetUpComingMoviesUseCase
 import com.ahmadov.showmovie.domein.use_case.remote.UseCases
+import com.ahmadov.showmovie.domein.use_case.remote.paging_use_case.NowPlayingMoviesPagingList
+import com.ahmadov.showmovie.domein.use_case.remote.paging_use_case.PopularMoviePagingList
+import com.ahmadov.showmovie.domein.use_case.remote.paging_use_case.TopRatedMoviesPagingList
+import com.ahmadov.showmovie.domein.use_case.remote.paging_use_case.UpComingMoviesPagingList
 import com.ahmadov.showmovie.util.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -51,7 +55,12 @@ object AppModule {
         GetPopularMovieUseCase(repo),
         GetUpComingMoviesUseCase(repo),
         GetSearchMovieUseCase(repo),
-        GetTopRatedMovieUseCase(repo)
+        GetTopRatedMovieUseCase(repo),
+        PopularMoviePagingList(repo),
+        TopRatedMoviesPagingList(repo),
+        UpComingMoviesPagingList(repo),
+        NowPlayingMoviesPagingList(repo),
+
     )
 
 

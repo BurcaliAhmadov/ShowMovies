@@ -10,6 +10,8 @@ import androidx.navigation.navArgument
 import com.ahmadov.showmovie.presentation.dashboard.DashBoardScreen
 import com.ahmadov.showmovie.presentation.movie_details.MovieDetailsScreen
 import com.ahmadov.showmovie.presentation.movie_details.components.YoutubePlayerScreen
+import com.ahmadov.showmovie.presentation.search_movie.SearchPageScreen
+import com.ahmadov.showmovie.presentation.view_all.ViewAllScreen
 
 @ExperimentalAnimationApi
 @Composable
@@ -64,6 +66,31 @@ fun Navigation() {
             YoutubePlayerScreen(navController = navController, youtubeCode = youtubeCode)
 
         }
+
+
+        //ViewAllScreen
+        composable(
+            route=Screen.ViewAll.route + "?moviesType={moviesType}",
+            arguments = listOf(
+                navArgument(name = "moviesType"){
+                    type= NavType.StringType
+                    defaultValue=""
+                }
+            )
+        ){
+            val moviesType=it.arguments?.getString("moviesType") ?: ""
+            ViewAllScreen(navController = navController, moviesType =moviesType )
+
+        }
+
+        //Search PAge Screen
+        composable(
+            route = Screen.SearchScreen.route
+        ) {
+            SearchPageScreen(navController = navController)
+        }
+
+
 
     }
 

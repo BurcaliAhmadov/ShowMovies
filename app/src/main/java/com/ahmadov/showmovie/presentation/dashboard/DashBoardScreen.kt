@@ -124,43 +124,48 @@ fun Title(
     moviesType: MoviesType
 
 ) {
-    Row(
-        horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = Modifier
-            .padding(15.dp)
-            .fillMaxWidth()
-
-
-    ) {
-        Text(
-            text = moviesType.value,
-            style = MaterialTheme.typography.h6
-        )
-        Row (
-            verticalAlignment = Alignment.CenterVertically,
+    if (visibility ){
+        Row(
             horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.clickable {
-                navController.navigate(Screen.ViewAll.route + "?moviesType=${moviesType.value}")
-            }
-        ){
+            modifier = Modifier
+                .padding(15.dp)
+                .fillMaxWidth()
 
+
+        ) {
             Text(
-                text ="View All",
-                style = MaterialTheme.typography.body1,
-                color = Color.Gray,
-                modifier = Modifier.padding(end = 10.dp)
+                text = moviesType.value,
+                style = MaterialTheme.typography.h6
             )
-            Icon(
-                painter = painterResource(id = R.drawable.double_arrow_right_14214),
-                contentDescription = "arrow_forward",
-                Modifier.size(10.dp),
-                tint = Color.Gray
-            )
+            Row (
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.clickable {
+                    navController.navigate(Screen.ViewAll.route + "?moviesType=${moviesType.value}")
+
+
+                }
+            ){
+
+                Text(
+                    text ="View All",
+                    style = MaterialTheme.typography.body1,
+                    color = Color.Gray,
+                    modifier = Modifier.padding(end = 10.dp)
+                )
+                Icon(
+                    painter = painterResource(id = R.drawable.double_arrow_right_14214),
+                    contentDescription = "arrow_forward",
+                    Modifier.size(10.dp),
+                    tint = Color.Gray
+                )
+
+            }
+
 
         }
-
-
     }
+
 
 }
 
